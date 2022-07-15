@@ -1,7 +1,7 @@
 # A Powerful Music Bot Property Of Rocks Indian Largest Chatting Group
 # Without Credit (Mother Fucker)
 # Rocks © @Dr_Asad_Ali © Rocks
-# Copyright (C) 2021 By @Itz_VeNom_xD 
+# Copyright (C) 2021 By @Itz_VeNom_xD
 # Copyright (C) 2021 By @Dr_Asad_Ali
 # Copyright (C) 2021 By @HarshitSharma361
 
@@ -59,7 +59,7 @@ def convert_seconds(seconds):
 # Convert hh:mm:ss to seconds
 def time_to_seconds(time):
     stringt = str(time)
-    return sum(int(x) * 60 ** i for i, x in enumerate(reversed(stringt.split(":"))))
+    return sum(int(x) * 60**i for i, x in enumerate(reversed(stringt.split(":"))))
 
 
 # Change image size
@@ -113,7 +113,7 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
 async def play(_, message: Message):
     global que
     global useer
-    
+
     lel = await message.reply("**🔎 Sᴇᴀʀᴄʜɪɴɢ ...**")
 
     administrators = await get_administrators(message.chat)
@@ -133,27 +133,30 @@ async def play(_, message: Message):
                 try:
                     invitelink = await _.export_chat_invite_link(chid)
                 except:
-                    await lel.edit(
-                        "**💥 ᴀᴛ 🤞 ғɪʀsᴛ 🥀 ᴍᴀᴋᴇ ♥️ ᴍᴇ ⭐ ᴀᴅᴍɪɴ 😎 ...**")
+                    await lel.edit("**💥 ᴀᴛ 🤞 ғɪʀsᴛ 🥀 ᴍᴀᴋᴇ ♥️ ᴍᴇ ⭐ ᴀᴅᴍɪɴ 😎 ...**")
                     return
 
                 try:
                     await USER.join_chat(invitelink)
                     await USER.send_message(
-                        message.chat.id, "** 😎 ɪ 🤞 ᴊᴏɪɴᴅ 🥀 ʜᴇʀᴇ ♥️ ᴛᴏ ⭐ ᴘʟᴀʏ ᴍᴜsɪᴄ 😎 ...**")
+                        message.chat.id,
+                        "** 😎 ɪ 🤞 ᴊᴏɪɴᴅ 🥀 ʜᴇʀᴇ ♥️ ᴛᴏ ⭐ ᴘʟᴀʏ ᴍᴜsɪᴄ 😎 ...**",
+                    )
 
                 except UserAlreadyParticipant:
                     pass
                 except Exception:
                     await lel.edit(
-                        f"**🎸 ᴘʟᴇᴀsᴡ ❤️ ᴍᴀɴᴜᴀʟʟʏ 🥀 ᴀᴅᴅ 💫 ᴀssɪsᴛᴀɴᴛ 😔 ᴏʀ 🎸 ᴄᴏɴᴛᴀᴄᴛ ❤️ ᴛᴏ : @Dr_Asad_Ali 🥀** ")
+                        f"**🎸 ᴘʟᴇᴀsᴡ ❤️ ᴍᴀɴᴜᴀʟʟʏ 🥀 ᴀᴅᴅ 💫 ᴀssɪsᴛᴀɴᴛ 😔 ᴏʀ 🎸 ᴄᴏɴᴛᴀᴄᴛ ❤️ ᴛᴏ : @Dr_Asad_Ali 🥀** "
+                    )
     try:
         await USER.get_chat(chid)
     except:
         await lel.edit(
-            f"**🎸 ᴘʟᴇᴀsᴇ ❤️ ᴍᴀɴᴜᴀʟʟʏ 🥀 ᴀᴅᴅ 💫 ᴀssɪsᴛᴀɴᴛ 😔 ᴏʀ 🎸 ᴄᴏɴᴛᴀᴄᴛ ❤️ ᴛᴏ : @Dr_Asad_Ali 🥀 ...*")
+            f"**🎸 ᴘʟᴇᴀsᴇ ❤️ ᴍᴀɴᴜᴀʟʟʏ 🥀 ᴀᴅᴅ 💫 ᴀssɪsᴛᴀɴᴛ 😔 ᴏʀ 🎸 ᴄᴏɴᴛᴀᴄᴛ ❤️ ᴛᴏ : @Dr_Asad_Ali 🥀 ...*"
+        )
         return
-    
+
     audio = (
         (message.reply_to_message.audio or message.reply_to_message.voice)
         if message.reply_to_message
@@ -175,13 +178,17 @@ async def play(_, message: Message):
         views = "Locally added"
 
         keyboard = InlineKeyboardMarkup(
-        [
             [
-                InlineKeyboardButton("❤️ ᴏᴡɴᴇʀ ❤️", url=f"https://t.me/Dr_Asad_Ali"),
-                InlineKeyboardButton("👨‍‍👧‍👦 ɢʀᴏᴜᴘ 👨‍👧‍👦", url=f"https://t.me/Shayri_Music_Lovers"),
+                [
+                    InlineKeyboardButton(
+                        "❤️ ᴏᴡɴᴇʀ ❤️", url=f"https://t.me/Dr_Asad_Ali"
+                    ),
+                    InlineKeyboardButton(
+                        "👨‍‍👧‍👦 ɢʀᴏᴜᴘ 👨‍👧‍👦", url=f"https://t.me/Shayri_Music_Lovers"
+                    ),
+                ]
             ]
-        ]
-    )
+        )
 
         requested_by = message.from_user.first_name
         await generate_cover(requested_by, title, views, duration, thumbnail)
@@ -212,13 +219,18 @@ async def play(_, message: Message):
                 secmul *= 60
 
             keyboard = InlineKeyboardMarkup(
-        [
-            [
-                InlineKeyboardButton("❤️ ᴏᴡɴᴇʀ ❤️", url=f"https://t.me/Dr_Asad_Ali"),
-                InlineKeyboardButton("👨‍‍👧‍👦 ɢʀᴏᴜᴘ 👨‍👧‍👦", url=f"https://t.me/Shayri_Music_Lovers"),
-            ]
-        ]
-    )
+                [
+                    [
+                        InlineKeyboardButton(
+                            "❤️ ᴏᴡɴᴇʀ ❤️", url=f"https://t.me/Dr_Asad_Ali"
+                        ),
+                        InlineKeyboardButton(
+                            "👨‍‍👧‍👦 ɢʀᴏᴜᴘ 👨‍👧‍👦",
+                            url=f"https://t.me/Shayri_Music_Lovers",
+                        ),
+                    ]
+                ]
+            )
 
         except Exception as e:
             title = "NaN"
@@ -226,13 +238,18 @@ async def play(_, message: Message):
             duration = "NaN"
             views = "NaN"
             keyboard = InlineKeyboardMarkup(
-        [
-            [
-                InlineKeyboardButton("❤️ ᴏᴡɴᴇʀ ❤️", url=f"https://t.me/Dr_Asad_Ali"),
-                InlineKeyboardButton("👨‍‍👧‍👦 ɢʀᴏᴜᴘ 👨‍👧‍👦", url=f"https://t.me/Shayri_Music_Lovers"),
-            ]
-        ]
-    )
+                [
+                    [
+                        InlineKeyboardButton(
+                            "❤️ ᴏᴡɴᴇʀ ❤️", url=f"https://t.me/Dr_Asad_Ali"
+                        ),
+                        InlineKeyboardButton(
+                            "👨‍‍👧‍👦 ɢʀᴏᴜᴘ 👨‍👧‍👦",
+                            url=f"https://t.me/Shayri_Music_Lovers",
+                        ),
+                    ]
+                ]
+            )
 
         if (dur / 60) > DURATION_LIMIT:
             await lel.edit(
@@ -244,9 +261,7 @@ async def play(_, message: Message):
         file_path = await converter.convert(youtube.download(url))
     else:
         if len(message.command) < 2:
-            return await lel.edit(
-                "**🤖 Gɪᴠᴇ 🙃 ᴍᴇ 💿 sᴏᴍᴇᴛʜɪɴɢ 😍\n💞 ᴛᴏ 🔊 ᴘʟᴀʏ 🌷...**"
-            )
+            return await lel.edit("**🤖 Gɪᴠᴇ 🙃 ᴍᴇ 💿 sᴏᴍᴇᴛʜɪɴɢ 😍\n💞 ᴛᴏ 🔊 ᴘʟᴀʏ 🌷...**")
         await lel.edit("**🔄 Aɴᴀʟʏsɪɴɢ ...**")
         query = message.text.split(None, 1)[1]
         # print(query)
@@ -271,20 +286,22 @@ async def play(_, message: Message):
                 secmul *= 60
 
         except Exception as e:
-            await lel.edit(
-                "**🔊 Mᴜsɪᴄ 😕 ɴᴏᴛ 📵 ғᴏᴜɴᴅ❗️\n💞 ᴛʀʏ ♨️ ᴀɴᴏᴛʜᴇʀ sᴏɴɢ 🌷...**"
-            )
+            await lel.edit("**🔊 Mᴜsɪᴄ 😕 ɴᴏᴛ 📵 ғᴏᴜɴᴅ❗️\n💞 ᴛʀʏ ♨️ ᴀɴᴏᴛʜᴇʀ sᴏɴɢ 🌷...**")
             print(str(e))
             return
 
         keyboard = InlineKeyboardMarkup(
-        [
             [
-                InlineKeyboardButton("❤️ ᴏᴡɴᴇʀ ❤️", url=f"https://t.me/Dr_Asad_Ali"),
-                InlineKeyboardButton("👨‍‍👧‍👦 ɢʀᴏᴜᴘ 👨‍👧‍👦", url=f"https://t.me/Shayri_Music_Lovers"),
+                [
+                    InlineKeyboardButton(
+                        "❤️ ᴏᴡɴᴇʀ ❤️", url=f"https://t.me/Dr_Asad_Ali"
+                    ),
+                    InlineKeyboardButton(
+                        "👨‍‍👧‍👦 ɢʀᴏᴜᴘ 👨‍👧‍👦", url=f"https://t.me/Shayri_Music_Lovers"
+                    ),
+                ]
             ]
-        ]
-    )
+        )
 
         if (dur / 60) > DURATION_LIMIT:
             await lel.edit(
@@ -302,38 +319,40 @@ async def play(_, message: Message):
         position = await queues.put(chat_id, file=file_path)
         await message.reply_photo(
             photo="final.png",
-            caption="**💥 Aʟᴇxᴀ 🤞 ᴀᴅᴅᴇᴅ 💿 sᴏɴɢ❗️\n🔊 ᴀᴛ ᴡᴀɪᴛɪɴɢ 💞 ᴘᴏsɪᴛɪᴏɴ » `{}` 🌷 ...**".format(position),
+            caption="**💥 Aʟᴇxᴀ 🤞 ᴀᴅᴅᴇᴅ 💿 sᴏɴɢ❗️\n🔊 ᴀᴛ ᴡᴀɪᴛɪɴɢ 💞 ᴘᴏsɪᴛɪᴏɴ » `{}` 🌷 ...**".format(
+                position
+            ),
             reply_markup=keyboard,
         )
     else:
         await clientbot.pytgcalls.join_group_call(
-                chat_id, 
-                InputStream(
-                    InputAudioStream(
-                        file_path,
-                    ),
+            chat_id,
+            InputStream(
+                InputAudioStream(
+                    file_path,
                 ),
-                stream_type=StreamType().local_stream,
-            )
+            ),
+            stream_type=StreamType().local_stream,
+        )
 
         await message.reply_photo(
             photo="final.png",
             reply_markup=keyboard,
             caption="**💥 Aʟᴇxᴀ🤞 ᴍᴜsɪᴄ 🎸 ɴᴏᴡ 💞\n🔊 ᴘᴀʟʏɪɴɢ ᴀᴛ 😍 ʏᴏᴜʀ ɢʀᴏᴜᴘ 🥀 ...**".format(),
-           )
+        )
 
     os.remove("final.png")
     return await lel.delete()
-    
-    
+
+
 @Client.on_message(commandpro(["/pause", "pause"]) & other_filters)
 @errors
 @authorized_users_only
 async def pause(_, message: Message):
     await clientbot.pytgcalls.pause_stream(message.chat.id)
     await message.reply_photo(
-                             photo="https://telegra.ph/file/c87a11663d606d0204f98.jpg", 
-                             caption="**💥 Aʟᴇxᴀ🔈 ᴍᴜsɪᴄ 🤞 ɴᴏᴡ 🥀\n▶️ ᴘᴀᴜsᴇᴅ ᴛᴏ ʀᴇsᴜᴍᴇ /resume 🌷 ...**"
+        photo="https://telegra.ph/file/c87a11663d606d0204f98.jpg",
+        caption="**💥 Aʟᴇxᴀ🔈 ᴍᴜsɪᴄ 🤞 ɴᴏᴡ 🥀\n▶️ ᴘᴀᴜsᴇᴅ ᴛᴏ ʀᴇsᴜᴍᴇ /resume 🌷 ...**",
     )
 
 
@@ -343,10 +362,9 @@ async def pause(_, message: Message):
 async def resume(_, message: Message):
     await clientbot.pytgcalls.resume_stream(message.chat.id)
     await message.reply_photo(
-                             photo="https://telegra.ph/file/1653cb38437d8ee4c6364.jpg", 
-                             caption="**💥 Aʟᴇxᴀ 🔈 ᴍᴜsɪᴄ 🤞 ɴᴏᴡ 🥀\n⏸ Rᴇsᴜᴍᴇᴅ ᴛᴏ ᴘᴀᴜsᴇ /pause 🌷 ...**"
+        photo="https://telegra.ph/file/1653cb38437d8ee4c6364.jpg",
+        caption="**💥 Aʟᴇxᴀ 🔈 ᴍᴜsɪᴄ 🤞 ɴᴏᴡ 🥀\n⏸ Rᴇsᴜᴍᴇᴅ ᴛᴏ ᴘᴀᴜsᴇ /pause 🌷 ...**",
     )
-
 
 
 @Client.on_message(commandpro(["/skip", "/next", "skip", "next"]) & other_filters)
@@ -362,12 +380,12 @@ async def skip(_, message: Message):
         await message.reply_text("**💥 Iᴛᴛᴜ 🤏 sᴇʏ 💞 ᴘᴀɢᴀʟ 🔇\n🚫 sᴏɴɢ ᴛᴏ ᴘʟᴀʏ ᴋᴇʀ 🌷 ...**")
     else:
         queues.task_done(chat_id)
-        
+
         if queues.is_empty(chat_id):
             await clientbot.pytgcalls.leave_group_call(chat_id)
         else:
             await clientbot.pytgcalls.change_stream(
-                chat_id, 
+                chat_id,
                 InputStream(
                     InputAudioStream(
                         clientbot.queues.get(chat_id)["file"],
@@ -375,11 +393,10 @@ async def skip(_, message: Message):
                 ),
             )
 
-
     await message.reply_photo(
-                             photo="https://telegra.ph/file/113b6e72f70c128f48abb.jpg", 
-                             caption=f'**💥 Aʟᴇxᴀ 🔈 ᴍᴜsɪᴄ 🤞ɴᴏᴡ 🥀\n⏩ sᴋɪᴘᴘᴇᴅ 🌷 ...**'
-   ) 
+        photo="https://telegra.ph/file/113b6e72f70c128f48abb.jpg",
+        caption=f"**💥 Aʟᴇxᴀ 🔈 ᴍᴜsɪᴄ 🤞ɴᴏᴡ 🥀\n⏩ sᴋɪᴘᴘᴇᴅ 🌷 ...**",
+    )
 
 
 @Client.on_message(commandpro(["/end", "end", "/stop", "stop", "x"]) & other_filters)
@@ -393,8 +410,8 @@ async def stop(_, message: Message):
 
     await clientbot.pytgcalls.leave_group_call(message.chat.id)
     await message.reply_photo(
-                             photo="https://telegra.ph/file/83426a8b5221e9c5cd5e7.jpg", 
-                             caption="**💥 Aʟᴇxᴀ 🔈 ᴍᴜsɪᴄ 🤞 ɴᴏᴡ 🥀\n❌ ᴇɴᴅᴇᴅ 🌷 ...**"
+        photo="https://telegra.ph/file/83426a8b5221e9c5cd5e7.jpg",
+        caption="**💥 Aʟᴇxᴀ 🔈 ᴍᴜsɪᴄ 🤞 ɴᴏᴡ 🥀\n❌ ᴇɴᴅᴇᴅ 🌷 ...**",
     )
 
 
@@ -411,6 +428,6 @@ async def admincache(client, message: Message):
     )
 
     await message.reply_photo(
-                              photo="https://telegra.ph/file/b92ed11ca9259ec96aaee.jpg",
-                              caption="**💥 Aʟᴇxᴀ 🔈 ᴍᴜsɪᴄ 🤞 ɴᴏᴡ 🥀\n🔥 Rᴇʟᴏᴀᴅᴇᴅ 🌷 ...**"
+        photo="https://telegra.ph/file/b92ed11ca9259ec96aaee.jpg",
+        caption="**💥 Aʟᴇxᴀ 🔈 ᴍᴜsɪᴄ 🤞 ɴᴏᴡ 🥀\n🔥 Rᴇʟᴏᴀᴅᴇᴅ 🌷 ...**",
     )
